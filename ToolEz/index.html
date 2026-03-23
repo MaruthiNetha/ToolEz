@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToolEz — PDF, Video & AI Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- PDF Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ── TOP BANNER ── -->
+  <div class="top-banner" id="topBanner">
+    <span>✦</span>
+    <span>All tools are 100% free · No sign-up required · Files never leave your device</span>
+    <button class="banner-close" onclick="document.getElementById('topBanner').remove()">✕</button>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <a href="#" class="logo">Tool<span>Ez</span></a>
+    <nav>
+      <a href="#pdf-tools" class="active" onclick="setNav(this)">PDF Tools</a>
+      <a href="#video-tools" onclick="setNav(this)">Video DL</a>
+      <a href="#ai-tools" onclick="setNav(this)">AI Tools</a>
+      <a href="#extra-tools" onclick="setNav(this)">More Tools</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-pill" style="position:relative">
+        <span style="color:var(--text-dim);font-size:0.9rem">⌕</span>
+        <input type="text" placeholder="Search tools..." id="headerSearch"
+          oninput="handleHeaderSearch(this.value)" autocomplete="off" />
+        <div class="search-results" id="searchDropdown" style="display:none"></div>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme" id="themeBtn">🌙</button>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb1"></div>
+      <div class="hero-orb orb2"></div>
+      <div class="hero-orb orb3"></div>
+    </div>
+    <div style="position:relative;z-index:1">
+      <div class="hero-badge">The only toolkit you'll ever need</div>
+      <h1>Convert, Download &<br><em>Discover AI Tools</em></h1>
+      <p>50+ free tools for PDF conversion, social media video downloading, and AI discovery — all in one beautiful, privacy-first platform.</p>
+      <div class="hero-search">
+        <input type="text" placeholder="Search for any tool — PDF, Video, AI..." id="heroSearch" />
+        <button onclick="triggerSearch()">Search Tools →</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Free Tools</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Private & Free</div></div>
+        <div class="stat"><div class="stat-num">9+</div><div class="stat-label">Platforms</div></div>
+        <div class="stat"><div class="stat-num">40+</div><div class="stat-label">AI Tools Listed</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       PDF TOOLS
+  ════════════════════════════════ -->
+  <div class="divider"></div>
+  <section class="section section-anchor" id="pdf-tools">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-title">📄 PDF <span>Tools</span></div>
+        <div class="section-sub">Convert, compress, merge, split and much more — all free, all local</div>
+      </div>
+    </div>
+
+    <!-- Featured cards -->
+    <div class="featured-grid reveal">
+      <div class="featured-card" onclick="openTool('pdf-merge')">
+        <div class="glow" style="background:var(--accent);top:-50px;left:-50px"></div>
+        <div class="featured-icon" style="background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.2)">🔗</div>
+        <div class="featured-title">Merge PDF</div>
+        <div class="featured-desc">Combine multiple PDFs into one perfectly ordered document. Drag to reorder pages.</div>
+        <div class="featured-cta">Open Tool →</div>
+      </div>
+      <div class="featured-card" onclick="openTool('pdf-compress')">
+        <div class="glow" style="background:var(--accent3);top:-50px;right:-50px"></div>
+        <div class="featured-icon" style="background:rgba(0,217,163,0.12);border:1px solid rgba(0,217,163,0.2)">📦</div>
+        <div class="featured-title">Compress PDF</div>
+        <div class="featured-desc">Reduce file size up to 90% without visible quality loss. Perfect for email and upload limits.</div>
+        <div class="featured-cta">Open Tool →</div>
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="cat-tabs reveal">
+      <button class="cat-tab active" onclick="filterPDF('all',this)">All</button>
+      <button class="cat-tab" onclick="filterPDF('convert',this)">Convert</button>
+      <button class="cat-tab" onclick="filterPDF('optimize',this)">Optimize</button>
+      <button class="cat-tab" onclick="filterPDF('organize',this)">Organize</button>
+      <button class="cat-tab" onclick="filterPDF('security',this)">Security</button>
+      <button class="cat-tab" onclick="filterPDF('create',this)">Create</button>
+    </div>
+
+    <!-- Tools Grid -->
+    <div class="tools-grid reveal" id="pdfGrid">
+      <!-- CONVERT -->
+      <div class="tool-card" data-cat="convert" onclick="openTool('pdf-to-word')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">📝</div><div class="tool-name">PDF to Word</div><div class="tool-desc">Convert PDF files to editable DOCX documents instantly</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('pdf-to-excel')" style="--card-color:#00d9a3;--icon-bg:rgba(0,217,163,0.12);--icon-border:rgba(0,217,163,0.2)"><div class="tool-icon">📊</div><div class="tool-name">PDF to Excel</div><div class="tool-desc">Extract tables and data from PDF into XLSX spreadsheets</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('pdf-to-ppt')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">🎞️</div><div class="tool-name">PDF to PPT</div><div class="tool-desc">Transform PDF into editable PowerPoint presentations</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('pdf-to-jpg')" style="--card-color:#ffb347;--icon-bg:rgba(255,179,71,0.12);--icon-border:rgba(255,179,71,0.2)"><div class="tool-icon">🖼️</div><div class="tool-name">PDF to JPG</div><div class="tool-desc">Convert each PDF page into a high-quality JPEG image</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('pdf-to-png')" style="--card-color:#5eead4;--icon-bg:rgba(94,234,212,0.12);--icon-border:rgba(94,234,212,0.2)"><div class="tool-icon">🏔️</div><div class="tool-name">PDF to PNG</div><div class="tool-desc">Export PDF pages as transparent-background PNG images</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('word-to-pdf')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">📄</div><div class="tool-name">Word to PDF</div><div class="tool-desc">Convert DOCX/DOC files to PDF preserving all formatting</div><span class="tool-badge new">NEW</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('excel-to-pdf')" style="--card-color:#00d9a3;--icon-bg:rgba(0,217,163,0.12);--icon-border:rgba(0,217,163,0.2)"><div class="tool-icon">📈</div><div class="tool-name">Excel to PDF</div><div class="tool-desc">Turn spreadsheets into shareable PDF reports</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('ppt-to-pdf')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">🎯</div><div class="tool-name">PPT to PDF</div><div class="tool-desc">Convert PowerPoint slides to fixed-layout PDF files</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('jpg-to-pdf')" style="--card-color:#ffb347;--icon-bg:rgba(255,179,71,0.12);--icon-border:rgba(255,179,71,0.2)"><div class="tool-icon">📸</div><div class="tool-name">JPG/PNG to PDF</div><div class="tool-desc">Combine images into a single PDF document easily</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="convert" onclick="openTool('html-to-pdf')" style="--card-color:#5eead4;--icon-bg:rgba(94,234,212,0.12);--icon-border:rgba(94,234,212,0.2)"><div class="tool-icon">🌐</div><div class="tool-name">HTML to PDF</div><div class="tool-desc">Convert web pages and HTML code into PDF documents</div><span class="tool-badge new">NEW</span></div>
+      <!-- OPTIMIZE -->
+      <div class="tool-card" data-cat="optimize" onclick="openTool('pdf-compress')" style="--card-color:#00d9a3;--icon-bg:rgba(0,217,163,0.12);--icon-border:rgba(0,217,163,0.2)"><div class="tool-icon">📦</div><div class="tool-name">Compress PDF</div><div class="tool-desc">Shrink PDF file size while keeping quality intact</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="optimize" onclick="openTool('pdf-ocr')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">🔍</div><div class="tool-name">PDF OCR</div><div class="tool-desc">Make scanned PDFs searchable with Optical Character Recognition</div><span class="tool-badge new">NEW</span></div>
+      <div class="tool-card" data-cat="optimize" onclick="openTool('pdf-repair')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">🔧</div><div class="tool-name">Repair PDF</div><div class="tool-desc">Fix corrupted or damaged PDF files and recover content</div><span class="tool-badge">FREE</span></div>
+      <!-- ORGANIZE -->
+      <div class="tool-card" data-cat="organize" onclick="openTool('pdf-merge')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">🔗</div><div class="tool-name">Merge PDF</div><div class="tool-desc">Combine multiple PDFs into a single document</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="organize" onclick="openTool('pdf-split')" style="--card-color:#ffb347;--icon-bg:rgba(255,179,71,0.12);--icon-border:rgba(255,179,71,0.2)"><div class="tool-icon">✂️</div><div class="tool-name">Split PDF</div><div class="tool-desc">Separate a PDF into individual pages or page ranges</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="organize" onclick="openTool('pdf-rotate')" style="--card-color:#5eead4;--icon-bg:rgba(94,234,212,0.12);--icon-border:rgba(94,234,212,0.2)"><div class="tool-icon">🔄</div><div class="tool-name">Rotate PDF</div><div class="tool-desc">Rotate individual pages or entire PDF documents 90°/180°</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="organize" onclick="openTool('pdf-reorder')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">📑</div><div class="tool-name">Reorder Pages</div><div class="tool-desc">Drag and drop to rearrange PDF pages in any order</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="organize" onclick="openTool('pdf-delete-pages')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">🗑️</div><div class="tool-name">Delete Pages</div><div class="tool-desc">Remove specific pages from any PDF document</div><span class="tool-badge">FREE</span></div>
+      <!-- SECURITY -->
+      <div class="tool-card" data-cat="security" onclick="openTool('pdf-protect')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">🔐</div><div class="tool-name">Protect PDF</div><div class="tool-desc">Add password protection and permissions to your PDF</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="security" onclick="openTool('pdf-unlock')" style="--card-color:#00d9a3;--icon-bg:rgba(0,217,163,0.12);--icon-border:rgba(0,217,163,0.2)"><div class="tool-icon">🔓</div><div class="tool-name">Unlock PDF</div><div class="tool-desc">Remove password restrictions from your PDF files</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="security" onclick="openTool('pdf-watermark')" style="--card-color:#ffb347;--icon-bg:rgba(255,179,71,0.12);--icon-border:rgba(255,179,71,0.2)"><div class="tool-icon">💧</div><div class="tool-name">Watermark PDF</div><div class="tool-desc">Add text or image watermarks to protect your documents</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="security" onclick="openTool('pdf-redact')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">⬛</div><div class="tool-name">Redact PDF</div><div class="tool-desc">Permanently remove sensitive information from PDF files</div><span class="tool-badge new">NEW</span></div>
+      <!-- CREATE -->
+      <div class="tool-card" data-cat="create" onclick="openTool('pdf-create')" style="--card-color:#6c63ff;--icon-bg:rgba(108,99,255,0.12);--icon-border:rgba(108,99,255,0.2)"><div class="tool-icon">✏️</div><div class="tool-name">Edit PDF</div><div class="tool-desc">Add, edit, delete text and shapes in any PDF</div><span class="tool-badge new">NEW</span></div>
+      <div class="tool-card" data-cat="create" onclick="openTool('pdf-sign')" style="--card-color:#00d9a3;--icon-bg:rgba(0,217,163,0.12);--icon-border:rgba(0,217,163,0.2)"><div class="tool-icon">✍️</div><div class="tool-name">Sign PDF</div><div class="tool-desc">Electronically sign documents with your digital signature</div><span class="tool-badge hot">HOT</span></div>
+      <div class="tool-card" data-cat="create" onclick="openTool('pdf-annotate')" style="--card-color:#ff6b6b;--icon-bg:rgba(255,107,107,0.12);--icon-border:rgba(255,107,107,0.2)"><div class="tool-icon">💬</div><div class="tool-name">Annotate PDF</div><div class="tool-desc">Highlight, comment, draw and markup PDF documents</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="create" onclick="openTool('pdf-form')" style="--card-color:#ffb347;--icon-bg:rgba(255,179,71,0.12);--icon-border:rgba(255,179,71,0.2)"><div class="tool-icon">📋</div><div class="tool-name">Fill PDF Form</div><div class="tool-desc">Fill and submit interactive PDF forms online</div><span class="tool-badge">FREE</span></div>
+      <div class="tool-card" data-cat="create" onclick="openTool('pdf-number')" style="--card-color:#5eead4;--icon-bg:rgba(94,234,212,0.12);--icon-border:rgba(94,234,212,0.2)"><div class="tool-icon">🔢</div><div class="tool-name">Add Page Numbers</div><div class="tool-desc">Insert page numbers with customizable position and style</div><span class="tool-badge">FREE</span></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       VIDEO DOWNLOADER
+  ════════════════════════════════ -->
+  <div class="divider"></div>
+  <section class="section section-anchor" id="video-tools">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-title">🎬 Video <span>Downloader</span></div>
+        <div class="section-sub">Download videos from any social media platform in the best quality</div>
+      </div>
+    </div>
+    <div class="video-section reveal">
+      <div class="bg-glow"></div>
+      <div style="position:relative;z-index:1">
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.5rem">Select platform &amp; paste your link:</p>
+        <div class="platform-chips">
+          <button class="platform-chip active" style="--chip-color:#ff0000;--chip-bg:rgba(255,0,0,0.1)" data-platform="youtube" onclick="setPlatform(this,'youtube')">▶ YouTube</button>
+          <button class="platform-chip" style="--chip-color:#e4405f;--chip-bg:rgba(228,64,95,0.1)" data-platform="instagram" onclick="setPlatform(this,'instagram')">📷 Instagram</button>
+          <button class="platform-chip" style="--chip-color:#000000;--chip-bg:rgba(255,255,255,0.05)" data-platform="tiktok" onclick="setPlatform(this,'tiktok')">🎵 TikTok</button>
+          <button class="platform-chip" style="--chip-color:#1da1f2;--chip-bg:rgba(29,161,242,0.1)" data-platform="twitter" onclick="setPlatform(this,'twitter')">𝕏 Twitter/X</button>
+          <button class="platform-chip" style="--chip-color:#1877f2;--chip-bg:rgba(24,119,242,0.1)" data-platform="facebook" onclick="setPlatform(this,'facebook')">Facebook</button>
+          <button class="platform-chip" style="--chip-color:#e60023;--chip-bg:rgba(230,0,35,0.1)" data-platform="pinterest" onclick="setPlatform(this,'pinterest')">Pinterest</button>
+          <button class="platform-chip" style="--chip-color:#1ab7ea;--chip-bg:rgba(26,183,234,0.1)" data-platform="vimeo" onclick="setPlatform(this,'vimeo')">Vimeo</button>
+          <button class="platform-chip" style="--chip-color:#ff4500;--chip-bg:rgba(255,69,0,0.1)" data-platform="reddit" onclick="setPlatform(this,'reddit')">Reddit</button>
+          <button class="platform-chip" style="--chip-color:#ff6900;--chip-bg:rgba(255,105,0,0.1)" data-platform="dailymotion" onclick="setPlatform(this,'dailymotion')">Dailymotion</button>
+        </div>
+        <div class="url-input-row">
+          <input type="url" id="videoUrl" placeholder="https://youtube.com/watch?v=..." />
+          <button class="btn btn-primary" onclick="processVideo()">📥 Fetch Video</button>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:1rem">Choose quality &amp; format:</p>
+        <div class="format-options" id="formatOptions">
+          <div class="format-opt selected" onclick="selectFormat(this,'1080p')"><div class="f-name">🎬 1080p</div><div class="f-detail">Full HD · MP4</div></div>
+          <div class="format-opt" onclick="selectFormat(this,'720p')"><div class="f-name">📺 720p</div><div class="f-detail">HD · MP4</div></div>
+          <div class="format-opt" onclick="selectFormat(this,'480p')"><div class="f-name">📱 480p</div><div class="f-detail">SD · MP4</div></div>
+          <div class="format-opt" onclick="selectFormat(this,'360p')"><div class="f-name">📡 360p</div><div class="f-detail">Low · MP4</div></div>
+          <div class="format-opt" onclick="selectFormat(this,'audio')"><div class="f-name">🎵 Audio</div><div class="f-detail">MP3 · 320kbps</div></div>
+          <div class="format-opt" onclick="selectFormat(this,'webm')"><div class="f-name">🌐 WebM</div><div class="f-detail">Web Optimized</div></div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:0.5rem;width:100%;justify-content:center;font-size:1rem;padding:1rem" onclick="downloadVideo()">⬇️ Download Video</button>
+        <div class="download-note">⚠️ <strong>Note:</strong> Only download videos you have the right to download. Respect creators' copyrights. For YouTube, <a href="https://cobalt.tools/" target="_blank" style="color:var(--accent4)">cobalt.tools</a> gives the best results.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       AI TOOLS DIRECTORY
+  ════════════════════════════════ -->
+  <div class="divider"></div>
+  <section class="section section-anchor" id="ai-tools">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-title">🤖 AI <span>Tools Directory</span></div>
+        <div class="section-sub">Every major AI tool, categorized and ready to explore</div>
+      </div>
+    </div>
+    <div class="cat-tabs reveal">
+      <button class="cat-tab active" onclick="filterAI('all',this)">All AI</button>
+      <button class="cat-tab" onclick="filterAI('chat',this)">Chat &amp; Writing</button>
+      <button class="cat-tab" onclick="filterAI('image',this)">Image Gen</button>
+      <button class="cat-tab" onclick="filterAI('code',this)">Code</button>
+      <button class="cat-tab" onclick="filterAI('video',this)">Video &amp; Audio</button>
+      <button class="cat-tab" onclick="filterAI('search',this)">Search</button>
+      <button class="cat-tab" onclick="filterAI('productivity',this)">Productivity</button>
+    </div>
+    <div class="ai-grid reveal" id="aiGrid">
+      <a href="https://chatgpt.com" target="_blank" class="ai-card" data-cat="chat" style="--ai-color:#10a37f"><div class="ai-logo" style="background:#10a37f;font-size:1.1rem">GPT</div><div><div class="ai-name">ChatGPT</div><div class="ai-category">Chat &amp; Writing</div></div><div class="ai-desc">OpenAI's flagship AI. Best for writing, coding, analysis. GPT-4o available free.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">GPT-4o</span></div></a>
+      <a href="https://claude.ai" target="_blank" class="ai-card" data-cat="chat" style="--ai-color:#d97757"><div class="ai-logo" style="background:#d97757;font-size:1.1rem">◆</div><div><div class="ai-name">Claude</div><div class="ai-category">Chat &amp; Writing</div></div><div class="ai-desc">Anthropic's AI excelling at long documents, nuanced writing and thoughtful analysis.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Long context</span></div></a>
+      <a href="https://gemini.google.com" target="_blank" class="ai-card" data-cat="chat" style="--ai-color:#4285f4"><div class="ai-logo" style="background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853);font-size:1rem">G</div><div><div class="ai-name">Gemini</div><div class="ai-category">Chat &amp; Writing</div></div><div class="ai-desc">Google's multimodal AI with deep Search &amp; Workspace integration. Great for research.</div><div class="ai-tags"><span class="ai-tag">Free</span><span class="ai-tag">Google</span></div></a>
+      <a href="https://copilot.microsoft.com" target="_blank" class="ai-card" data-cat="chat" style="--ai-color:#0078d4"><div class="ai-logo" style="background:#0078d4;font-size:1.1rem">M</div><div><div class="ai-name">Microsoft Copilot</div><div class="ai-category">Chat &amp; Writing</div></div><div class="ai-desc">GPT-4 powered with Bing integration. Excellent for Office 365 workflows.</div><div class="ai-tags"><span class="ai-tag">Free</span><span class="ai-tag">Office 365</span></div></a>
+      <a href="https://www.perplexity.ai" target="_blank" class="ai-card" data-cat="search" style="--ai-color:#20b2aa"><div class="ai-logo" style="background:#20b2aa;font-size:1.2rem">⊕</div><div><div class="ai-name">Perplexity AI</div><div class="ai-category">AI Search</div></div><div class="ai-desc">Best AI-powered search engine. Real-time answers with cited sources.</div><div class="ai-tags"><span class="ai-tag">Real-time</span><span class="ai-tag">Citations</span></div></a>
+      <a href="https://character.ai" target="_blank" class="ai-card" data-cat="chat" style="--ai-color:#6c63ff"><div class="ai-logo" style="background:#6c63ff;font-size:1rem">C.ai</div><div><div class="ai-name">Character.AI</div><div class="ai-category">Chat &amp; Roleplay</div></div><div class="ai-desc">Chat with AI personas and fictional characters. Huge community character library.</div><div class="ai-tags"><span class="ai-tag">Characters</span><span class="ai-tag">Free</span></div></a>
+      <a href="https://www.midjourney.com" target="_blank" class="ai-card" data-cat="image" style="--ai-color:#7289da"><div class="ai-logo" style="background:#7289da;font-size:1.3rem">✦</div><div><div class="ai-name">Midjourney</div><div class="ai-category">Image Generation</div></div><div class="ai-desc">The most stunning AI art generator. Unmatched aesthetic quality for art and photography.</div><div class="ai-tags"><span class="ai-tag">Paid</span><span class="ai-tag">Best quality</span></div></a>
+      <a href="https://openai.com/dall-e-3" target="_blank" class="ai-card" data-cat="image" style="--ai-color:#10a37f"><div class="ai-logo" style="background:#10a37f;font-size:0.9rem">DALL·E</div><div><div class="ai-name">DALL·E 3</div><div class="ai-category">Image Generation</div></div><div class="ai-desc">OpenAI's image generator with incredible text understanding for precise illustrations.</div><div class="ai-tags"><span class="ai-tag">ChatGPT Plus</span></div></a>
+      <a href="https://stability.ai" target="_blank" class="ai-card" data-cat="image" style="--ai-color:#9b59b6"><div class="ai-logo" style="background:#9b59b6;font-size:1rem">SD</div><div><div class="ai-name">Stable Diffusion</div><div class="ai-category">Image Generation</div></div><div class="ai-desc">Open-source AI image gen. Run locally or use DreamStudio. Unlimited creative control.</div><div class="ai-tags"><span class="ai-tag">Open source</span><span class="ai-tag">Free</span></div></a>
+      <a href="https://ideogram.ai" target="_blank" class="ai-card" data-cat="image" style="--ai-color:#f39c12"><div class="ai-logo" style="background:#f39c12;font-size:0.9rem">Idm</div><div><div class="ai-name">Ideogram AI</div><div class="ai-category">Image Generation</div></div><div class="ai-desc">Best for images with accurate text. Great for logos, posters and social media graphics.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Text in images</span></div></a>
+      <a href="https://firefly.adobe.com" target="_blank" class="ai-card" data-cat="image" style="--ai-color:#ff6f00"><div class="ai-logo" style="background:#ff6f00;font-size:1rem">Ff</div><div><div class="ai-name">Adobe Firefly</div><div class="ai-category">Image Generation</div></div><div class="ai-desc">Commercially safe AI image generator. Generative fill in Photoshop. Perfect for pros.</div><div class="ai-tags"><span class="ai-tag">Commercial use</span></div></a>
+      <a href="https://cursor.com" target="_blank" class="ai-card" data-cat="code" style="--ai-color:#6c63ff"><div class="ai-logo" style="background:#6c63ff;font-size:1.2rem">▌</div><div><div class="ai-name">Cursor</div><div class="ai-category">Code Editor</div></div><div class="ai-desc">The AI-first code editor. Chat with your codebase, auto-complete entire functions.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Best for dev</span></div></a>
+      <a href="https://github.com/features/copilot" target="_blank" class="ai-card" data-cat="code" style="--ai-color:#333"><div class="ai-logo" style="background:#333;font-size:1.1rem">⌥</div><div><div class="ai-name">GitHub Copilot</div><div class="ai-category">Code Assistant</div></div><div class="ai-desc">The original AI pair programmer. Inline suggestions in VS Code and all major IDEs.</div><div class="ai-tags"><span class="ai-tag">Paid</span><span class="ai-tag">IDE plugin</span></div></a>
+      <a href="https://v0.dev" target="_blank" class="ai-card" data-cat="code" style="--ai-color:#7c3aed"><div class="ai-logo" style="background:#111;font-size:1rem;border:1px solid rgba(255,255,255,0.2)">v0</div><div><div class="ai-name">v0 by Vercel</div><div class="ai-category">UI Generation</div></div><div class="ai-desc">Generate full React UI from text. Ship production-ready shadcn/ui code instantly.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">React</span></div></a>
+      <a href="https://bolt.new" target="_blank" class="ai-card" data-cat="code" style="--ai-color:#7c3aed"><div class="ai-logo" style="background:#7c3aed;font-size:1.2rem">⚡</div><div><div class="ai-name">Bolt.new</div><div class="ai-category">Full-stack AI</div></div><div class="ai-desc">Build entire full-stack web apps with AI. Runs in browser, deploys instantly.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Full-stack</span></div></a>
+      <a href="https://runwayml.com" target="_blank" class="ai-card" data-cat="video" style="--ai-color:#00d4ff"><div class="ai-logo" style="background:#00d4ff;font-size:1rem;color:#000">R</div><div><div class="ai-name">Runway Gen-3</div><div class="ai-category">Video Generation</div></div><div class="ai-desc">Generate stunning AI videos from text or images. Hollywood-quality production.</div><div class="ai-tags"><span class="ai-tag">Paid</span><span class="ai-tag">Video AI</span></div></a>
+      <a href="https://suno.com" target="_blank" class="ai-card" data-cat="video" style="--ai-color:#ff6b6b"><div class="ai-logo" style="background:#ff6b6b;font-size:1.2rem">♪</div><div><div class="ai-name">Suno AI</div><div class="ai-category">Music Generation</div></div><div class="ai-desc">Create full songs with vocals from a text prompt. Best AI music generator available.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Music</span></div></a>
+      <a href="https://elevenlabs.io" target="_blank" class="ai-card" data-cat="video" style="--ai-color:#3ecf8e"><div class="ai-logo" style="background:#3ecf8e;font-size:1rem;color:#000">EL</div><div><div class="ai-name">ElevenLabs</div><div class="ai-category">Voice AI</div></div><div class="ai-desc">Most realistic AI voice generator. Clone voices and create ultra-realistic TTS.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Voice clone</span></div></a>
+      <a href="https://www.heygen.com" target="_blank" class="ai-card" data-cat="video" style="--ai-color:#5865f2"><div class="ai-logo" style="background:#5865f2;font-size:1rem">HG</div><div><div class="ai-name">HeyGen</div><div class="ai-category">Video AI</div></div><div class="ai-desc">Create AI avatar videos. Translate videos in 40+ languages automatically.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Avatars</span></div></a>
+      <a href="https://www.notion.com/product/ai" target="_blank" class="ai-card" data-cat="productivity" style="--ai-color:#333"><div class="ai-logo" style="background:#333;font-size:1rem">N</div><div><div class="ai-name">Notion AI</div><div class="ai-category">Productivity</div></div><div class="ai-desc">AI inside your Notion workspace. Write, summarize and auto-fill databases.</div><div class="ai-tags"><span class="ai-tag">$10/mo add-on</span></div></a>
+      <a href="https://www.grammarly.com" target="_blank" class="ai-card" data-cat="productivity" style="--ai-color:#15c39a"><div class="ai-logo" style="background:#15c39a;font-size:1rem">G</div><div><div class="ai-name">Grammarly</div><div class="ai-category">Writing AI</div></div><div class="ai-desc">Real-time grammar and tone suggestions. Works across all websites via extension.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Browser ext</span></div></a>
+      <a href="https://www.deepl.com/translator" target="_blank" class="ai-card" data-cat="productivity" style="--ai-color:#0a2548"><div class="ai-logo" style="background:#0a2548;font-size:1rem">DL</div><div><div class="ai-name">DeepL</div><div class="ai-category">Translation AI</div></div><div class="ai-desc">Most accurate AI translator. Better than Google Translate for nuanced translations.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Documents</span></div></a>
+      <a href="https://otter.ai" target="_blank" class="ai-card" data-cat="productivity" style="--ai-color:#6366f1"><div class="ai-logo" style="background:#6366f1;font-size:1rem">Ot</div><div><div class="ai-name">Otter.ai</div><div class="ai-category">Transcription AI</div></div><div class="ai-desc">Real-time meeting transcription. Works with Zoom, Teams, Google Meet automatically.</div><div class="ai-tags"><span class="ai-tag">Free tier</span><span class="ai-tag">Meetings</span></div></a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       EXTRA / MORE TOOLS
+  ════════════════════════════════ -->
+  <div class="divider"></div>
+  <section class="section section-anchor" id="extra-tools">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-title">⚡ More <span>Free Tools</span></div>
+        <div class="section-sub">Handy utilities for everyday tasks</div>
+      </div>
+    </div>
+    <div class="extra-tools-grid reveal">
+      <div class="extra-card" onclick="openTool('img-compress')"><div class="e-icon">🗜️</div><div class="e-name">Image Compressor</div><div class="e-desc">Reduce image file size without losing quality</div></div>
+      <div class="extra-card" onclick="openTool('img-convert')"><div class="e-icon">🔄</div><div class="e-name">Image Converter</div><div class="e-desc">Convert between JPG, PNG, WebP, GIF formats</div></div>
+      <div class="extra-card" onclick="openTool('img-resize')"><div class="e-icon">📐</div><div class="e-name">Image Resizer</div><div class="e-desc">Resize images to exact dimensions or percentages</div></div>
+      <a href="https://www.remove.bg" target="_blank" class="extra-card"><div class="e-icon">✂️</div><div class="e-name">Background Remover</div><div class="e-desc">Remove image backgrounds instantly with AI</div></a>
+      <div class="extra-card" onclick="openTool('qr-gen')"><div class="e-icon">🔲</div><div class="e-name">QR Code Generator</div><div class="e-desc">Create custom QR codes for URLs, text, contacts</div></div>
+      <div class="extra-card" onclick="openTool('color-picker')"><div class="e-icon">🎨</div><div class="e-name">Color Picker</div><div class="e-desc">Pick colors and get HEX, RGB, HSL values</div></div>
+      <div class="extra-card" onclick="openTool('word-counter')"><div class="e-icon">🔢</div><div class="e-name">Word Counter</div><div class="e-desc">Count words, characters, sentences in text</div></div>
+      <div class="extra-card" onclick="openTool('url-shortener')"><div class="e-icon">🔗</div><div class="e-name">URL Shortener</div><div class="e-desc">Create short, shareable links from long URLs</div></div>
+      <div class="extra-card" onclick="openTool('password-gen')"><div class="e-icon">🔑</div><div class="e-name">Password Generator</div><div class="e-desc">Generate strong, secure random passwords</div></div>
+      <div class="extra-card" onclick="openTool('base64')"><div class="e-icon">⚙️</div><div class="e-name">Base64 Encoder</div><div class="e-desc">Encode/decode Base64 strings and images</div></div>
+      <div class="extra-card" onclick="openTool('md-preview')"><div class="e-icon">📝</div><div class="e-name">Markdown Editor</div><div class="e-desc">Write and preview Markdown in real-time</div></div>
+      <div class="extra-card" onclick="openTool('json-format')"><div class="e-icon">{ }</div><div class="e-name">JSON Formatter</div><div class="e-desc">Format, validate and minify JSON data</div></div>
+      <div class="extra-card" onclick="openTool('unit-conv')"><div class="e-icon">⚖️</div><div class="e-name">Unit Converter</div><div class="e-desc">Convert length, weight, temperature and more</div></div>
+      <div class="extra-card" onclick="openTool('timer')"><div class="e-icon">⏱️</div><div class="e-name">Stopwatch / Timer</div><div class="e-desc">Countdown timer and stopwatch utility</div></div>
+      <div class="extra-card" onclick="openTool('age-calc')"><div class="e-icon">🎂</div><div class="e-name">Age Calculator</div><div class="e-desc">Calculate exact age and upcoming birthdays</div></div>
+      <div class="extra-card" onclick="openTool('ip-lookup')"><div class="e-icon">🌐</div><div class="e-name">IP Lookup</div><div class="e-desc">Find location and details of any IP address</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">ToolEz</a>
+        <p>The ultimate free toolkit for PDF conversion, video downloading and AI tool discovery. 100% free, 100% private.</p>
+      </div>
+      <div class="footer-col">
+        <h4>PDF Tools</h4>
+        <a href="#" onclick="openTool('pdf-to-word')">PDF to Word</a>
+        <a href="#" onclick="openTool('pdf-merge')">Merge PDF</a>
+        <a href="#" onclick="openTool('pdf-compress')">Compress PDF</a>
+        <a href="#" onclick="openTool('pdf-split')">Split PDF</a>
+        <a href="#" onclick="openTool('jpg-to-pdf')">Image to PDF</a>
+      </div>
+      <div class="footer-col">
+        <h4>More Tools</h4>
+        <a href="#video-tools">Video Downloader</a>
+        <a href="#ai-tools">AI Directory</a>
+        <a href="#" onclick="openTool('qr-gen')">QR Generator</a>
+        <a href="#" onclick="openTool('img-compress')">Image Compressor</a>
+        <a href="#" onclick="openTool('password-gen')">Password Generator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact</a>
+        <a href="#">Suggest a Tool</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ToolEz · Made with ♥ · All tools are free forever</p>
+      <div class="social-links">
+        <a href="#" class="social-link">𝕏</a>
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">◎</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ── TOAST CONTAINER ── -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ── JS FILES (order matters) ── -->
+  <script src="js/main.js"></script>
+  <script src="js/pdf-tools.js"></script>
+  <script src="js/mini-tools.js"></script>
+  <script src="js/tool-modals.js"></script>
+  <script src="js/video.js"></script>
+
+</body>
+</html>
