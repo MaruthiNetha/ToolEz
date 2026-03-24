@@ -269,45 +269,110 @@
 
   <!-- ── FOOTER ── -->
   <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="#" class="logo">ToolEz</a>
-        <p>The ultimate free toolkit for PDF conversion, video downloading and AI tool discovery. 100% free, 100% private.</p>
-      </div>
-      <div class="footer-col">
-        <h4>PDF Tools</h4>
-        <a href="#" onclick="openTool('pdf-to-word')">PDF to Word</a>
-        <a href="#" onclick="openTool('pdf-merge')">Merge PDF</a>
-        <a href="#" onclick="openTool('pdf-compress')">Compress PDF</a>
-        <a href="#" onclick="openTool('pdf-split')">Split PDF</a>
-        <a href="#" onclick="openTool('jpg-to-pdf')">Image to PDF</a>
-      </div>
-      <div class="footer-col">
-        <h4>More Tools</h4>
-        <a href="#video-tools">Video Downloader</a>
-        <a href="#ai-tools">AI Directory</a>
-        <a href="#" onclick="openTool('qr-gen')">QR Generator</a>
-        <a href="#" onclick="openTool('img-compress')">Image Compressor</a>
-        <a href="#" onclick="openTool('password-gen')">Password Generator</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Contact</a>
-        <a href="#">Suggest a Tool</a>
+  <div class="footer-inner">
+
+    <!-- Brand -->
+    <div class="footer-brand">
+      <a href="#" class="logo">ToolEz</a>
+      <p>The ultimate free toolkit for PDF conversion, video downloading and AI tool discovery. 100% free, 100% private — your files never leave your device.</p>
+      <div class="social-links" style="margin-top:1rem">
+        <a href="https://twitter.com/toolez" target="_blank" class="social-link">𝕏</a>
+        <a href="https://instagram.com/toolez" target="_blank" class="social-link">📷</a>
+        <a href="https://linkedin.com/company/toolez" target="_blank" class="social-link">in</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2025 ToolEz · Made with ♥ · All tools are free forever</p>
-      <div class="social-links">
-        <a href="#" class="social-link">𝕏</a>
-        <a href="#" class="social-link">in</a>
-        <a href="#" class="social-link">◎</a>
-      </div>
+
+    <!-- PDF Tools -->
+    <div class="footer-col">
+      <h4>PDF Tools</h4>
+      <a href="#" onclick="openTool('pdf-to-word')">PDF to Word</a>
+      <a href="#" onclick="openTool('pdf-merge')">Merge PDF</a>
+      <a href="#" onclick="openTool('pdf-compress')">Compress PDF</a>
+      <a href="#" onclick="openTool('pdf-split')">Split PDF</a>
+      <a href="#" onclick="openTool('jpg-to-pdf')">Image to PDF</a>
+      <a href="#" onclick="openTool('pdf-rotate')">Rotate PDF</a>
     </div>
-  </footer>
+
+    <!-- More Tools -->
+    <div class="footer-col">
+      <h4>More Tools</h4>
+      <a href="#video-tools">Video Downloader</a>
+      <a href="#ai-tools">AI Directory</a>
+      <a href="#" onclick="openTool('qr-gen')">QR Generator</a>
+      <a href="#" onclick="openTool('img-compress')">Image Compressor</a>
+      <a href="#" onclick="openTool('password-gen')">Password Generator</a>
+      <a href="#" onclick="openTool('word-counter')">Word Counter</a>
+    </div>
+
+    <!-- Company -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+      <a href="#contact">Contact Us</a>
+      <a href="#suggest">Suggest a Tool</a>
+      <a href="#advertise">Advertise</a>
+    </div>
+
+  </div>
+
+  <!-- Contact & About Strip -->
+  <div class="footer-contact-strip">
+    <div class="footer-contact-inner">
+
+      <div class="footer-contact-card" id="about">
+        <div class="fc-icon">🏢</div>
+        <div>
+          <div class="fc-title">About ToolEz</div>
+          <div class="fc-desc">ToolEz is a free, privacy-first web platform offering 50+ tools for PDF conversion, video downloading and AI discovery. Built for everyone — no signup, no fees, ever.</div>
+        </div>
+      </div>
+
+      <div class="footer-contact-card" id="contact">
+        <div class="fc-icon">📬</div>
+        <div>
+          <div class="fc-title">Contact Us</div>
+          <div class="fc-desc">
+            Have a question, bug report or suggestion?<br>
+            📧 <a href="mailto:hello@toolez.com" style="color:var(--accent)">hello@toolez.com</a><br>
+            We reply within 24 hours.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-contact-card" id="suggest">
+        <div class="fc-icon">💡</div>
+        <div>
+          <div class="fc-title">Suggest a Tool</div>
+          <div class="fc-desc">
+            Missing a tool you need? Let us know and we'll build it.<br>
+            📧 <a href="mailto:suggest@toolez.com" style="color:var(--accent)">suggest@toolez.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-contact-card" id="privacy">
+        <div class="fc-icon">🔒</div>
+        <div>
+          <div class="fc-title">Privacy Policy</div>
+          <div class="fc-desc">We do not collect, store or share your files. All processing happens in your browser. We use no tracking cookies or analytics. Your data is always yours.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>© 2025 ToolEz · Made with ♥ · All tools are free forever</p>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a href="#privacy" style="font-size:0.8rem;color:var(--text-dim);text-decoration:none">Privacy</a>
+      <a href="#terms" style="font-size:0.8rem;color:var(--text-dim);text-decoration:none">Terms</a>
+      <a href="#contact" style="font-size:0.8rem;color:var(--text-dim);text-decoration:none">Contact</a>
+    </div>
+  </div>
+</footer>
 
   <!-- ── MODAL ── -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
