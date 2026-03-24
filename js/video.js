@@ -51,7 +51,7 @@ function downloadVideo() {
   if (!url) { toast('Please paste a video URL first', 'error'); return; }
   if (!isValidURL(url)) { toast('Please enter a valid URL', 'error'); return; }
 
-  toast(`Opening download for ${getPlatformName()} (${selectedFormat})...`, 'info');
+  toast(`Opening cobalt.tools — paste the same URL there to download ✅`, 'info');
 
   // cobalt.tools supports: YouTube, Instagram, TikTok, Twitter, Facebook,
   // Vimeo, Reddit, Dailymotion and more — best open-source video downloader API
