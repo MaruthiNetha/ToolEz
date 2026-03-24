@@ -585,3 +585,51 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 3
     gap: 0.5rem;
   }
 }
+
+/* ─── FOOTER CONTACT STRIP ─── */
+.footer-contact-strip {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+}
+.footer-contact-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.footer-contact-card {
+  display: flex;
+  gap: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: border-color var(--transition);
+}
+.footer-contact-card:hover {
+  border-color: var(--accent);
+}
+.fc-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.fc-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+.fc-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .footer-contact-inner {
+    grid-template-columns: 1fr;
+  }
+}
