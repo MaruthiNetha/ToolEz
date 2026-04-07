@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════ */
 
 // ─── YOUR RENDER SERVER URL ───────────────────────
-const SERVER_URL = 'https://toolez-backend.onrender.com';
+const SERVER_URL = 'https://toolez-backend-7l1w.onrender.com';
 
 let selectedPlatform = 'youtube';
 let selectedFormat   = '1080p';
