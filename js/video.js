@@ -76,7 +76,7 @@ async function downloadVideo() {
   try {
     toast('Connecting to server...', 'info');
 
-    const response = await fetch(`${SERVER_URL}/download`, {
+    const response = await fetch(SERVER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
